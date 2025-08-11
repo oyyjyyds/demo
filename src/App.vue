@@ -84,7 +84,7 @@ const clickbtn = async (e) => {
     <div v-for="(item, index) in arr" :key="index">
       <img
         :src="item"
-        style="height: 200px"
+        style="height: 300px"
         v-lazy="item"
         @click="clickbtn"
         :id="`img${index}`"

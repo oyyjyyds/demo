@@ -4,10 +4,13 @@ import { getData } from '@/api/index.js';
 // import A from '@/components/A.vue';
 // import B from '@/components/B.vue';
 
+const instance = getCurrentInstance();
+
 //懒加载指令
 import { vLazy } from '@/utils/instruction/index.js';
 
 import { useBase } from '@/hooks/base.js';
+import { getCurrentInstance, ref } from 'vue';
 
 //按钮loading
 // const { run, loading } = useAsyncButton(
@@ -32,6 +35,7 @@ const arr = Object.values(imageList).map((item) => item.default);
 const clickbtn = async (e) => {
   const res = await useBase({ el: '#' + e.target.id });
   console.log(res);
+  instance.proxy.$loading.toggle();
 };
 
 //拖拽指令
@@ -72,6 +76,8 @@ const clickbtn = async (e) => {
 //   };
 //   el.addEventListener('mousedown', mouseDown);
 // };
+
+const reds = ref('green');
 </script>
 
 <template>
@@ -81,6 +87,7 @@ const clickbtn = async (e) => {
     <!-- <button @click="() => run()" :disabled="loading">
       {{ loading ? '加载中...' : '点击请求' }}
     </button> -->
+    <h1>测试</h1>
     <div v-for="(item, index) in arr" :key="index">
       <img
         :src="item"
@@ -98,6 +105,9 @@ const clickbtn = async (e) => {
 
 <style scoped lang="scss">
 .container {
+  h1 {
+    color: v-bind(reds);
+  }
   .box {
     width: 200px;
     height: 200px;

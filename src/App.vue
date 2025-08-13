@@ -3,6 +3,7 @@ import { useAsyncButton } from '@/hooks/demo.js';
 import { getData } from '@/api/index.js';
 // import A from '@/components/A.vue';
 // import B from '@/components/B.vue';
+import store from '@/components/store.vue';
 
 const instance = getCurrentInstance();
 
@@ -82,6 +83,8 @@ const reds = ref('green');
 
 <template>
   <div class="container">
+    <store></store>
+
     <!-- <A></A>
     <B></B> -->
     <!-- <button @click="() => run()" :disabled="loading">

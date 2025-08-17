@@ -11,7 +11,15 @@ const instance = getCurrentInstance();
 import { vLazy } from '@/utils/instruction/index.js';
 
 import { useBase } from '@/hooks/base.js';
-import { getCurrentInstance, ref } from 'vue';
+import {
+  createApp,
+  createVNode,
+  getCurrentInstance,
+  h,
+  onMounted,
+  ref,
+  render,
+} from 'vue';
 
 //按钮loading
 // const { run, loading } = useAsyncButton(
@@ -78,10 +86,24 @@ const clickbtn = async (e) => {
 //   el.addEventListener('mousedown', mouseDown);
 // };
 
+import AAA from '@/components/AAA.vue';
+
 const reds = ref('green');
+
+//挂载dom
+onMounted(() => {
+  createApp(AAA).mount('.demo');
+
+  //挂载模拟dom
+  render(
+    createVNode(h('div', {}, '测试')),
+    document.querySelector('.container')
+  );
+});
 </script>
 
 <template>
+  <div class="demo"></div>
   <div class="container">
     <store></store>
 
@@ -90,7 +112,7 @@ const reds = ref('green');
     <!-- <button @click="() => run()" :disabled="loading">
       {{ loading ? '加载中...' : '点击请求' }}
     </button> -->
-    <h1>测试</h1>
+    <!-- <h1>测试</h1>
     <div v-for="(item, index) in arr" :key="index">
       <img
         :src="item"
@@ -99,7 +121,7 @@ const reds = ref('green');
         @click="clickbtn"
         :id="`img${index}`"
       />
-    </div>
+    </div> -->
     <!-- <div class="box" v-move></div>
     <div class="box" v-move></div>
     <div class="box" v-move></div> -->
